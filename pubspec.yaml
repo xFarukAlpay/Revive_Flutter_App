@@ -1,0 +1,62 @@
+name: tirloj
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cached_network_image: ^3.3.1
+  flutter_native_splash: ^2.0.6
+  flutter_svg: ^2.0.10+1
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+  shared_preferences: ^2.3.0
+  connectivity_plus: ^6.0.4
+  smooth_page_indicator: ^1.2.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1  # Eklendi
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/splash.png
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
+    - family: Kalam
+      fonts:
+        - asset: assets/fonts/KalamRegular.ttf
+          weight: 400
+    - family: Karma
+      fonts:
+        - asset: assets/fonts/KarmaRegular.ttf
+          weight: 400
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/RobotoMedium.ttf
+          weight: 500
+        - asset: assets/fonts/RobotoRegular.ttf
+          weight: 400
+    - family: Rosarivo
+      fonts:
+        - asset: assets/fonts/RosarivoRegular.ttf
+          weight: 400
+    - family: Sedan
+      fonts:
+        - asset: assets/fonts/SedanRegular.ttf
+          weight: 400

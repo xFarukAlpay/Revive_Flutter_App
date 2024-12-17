@@ -1,0 +1,30 @@
+buildscript {
+    ext.kotlin_version = '1.7.10' // Kotlin sürümünüzü buradan güncelleyin.
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.0.2" // Gradle eklentisi versiyonunu güncelleyin.
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Özel build dizini ayarlama
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(":app") // Bu satırda bir sorun yok, projeniz için gerekebilir.
+}
+
+// Temizleme işlemi için görev tanımı
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
