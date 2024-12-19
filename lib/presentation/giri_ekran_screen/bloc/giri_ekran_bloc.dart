@@ -37,7 +37,7 @@ class GiriEkranBloc extends Bloc<GiriEkranEvent, GiriEkranState> {
       Emitter<GiriEkranState> emit,
       ) {
     NavigatorService.popAndPushNamed(
-      AppRoutes.ilanScreen,
+      AppRoutes.ilanVer,
     );
   }
 }

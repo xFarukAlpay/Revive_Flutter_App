@@ -1,18 +1,18 @@
 final Map<String, String> enUs = {
   //Giriş Ekranı Screen
-  "lbl_ayd_nlojis": "AydınLojis",
+  "lbl_ayd_nlojis": "Revive",
   "lbl_hesab_n_yok_mu": "Hesabın Yok mu?",
   "lbl_kay_t": "Kayıt",
   "lbl_ol":"ol",
-  "msg_ayd_nlojis_ile_daha": "AydınLojis ile Daha Avantajlı!",
+  "msg_ayd_nlojis_ile_daha": "Revive ile Daha Avantajlı!",
   "msg_her_zaman_g_venlidir":
-      "Her zaman güvenilir taşımacılık çözümleriyle yanınızdayız. Aydınlojis her an sizinle",
+      "Kullanmadığın eşyalarını değerinde sat, yenilerine yer aç! Revive ile daha avantajlı.",
   "msg_her_zaman_g_venlidir_2":
-  "Güvenli ve hızlı taşımacılıkla işlerinizi zamanında tamamlıyoruz. Aydınlojis farkıyla her zaman güvendesiniz.",
+  "Eşyalarını güvenle taşı, ikinci baharını yaşasın! Revive her zaman yanında.",
   "msg_her_zaman_g_venlidir_3":
-  "Her yükünüz bizimle emin ellerde. Aydınlojis, kaliteli hizmetin adresi.",
+  "İkinci el eşyaların güvenle alıcısına ulaşsın! Revive, hızlı ve güvenli taşımacılık sunar.",
   "msg_her_zaman_g_venlidir_4":
-  "Taşımacılıkta güven ve hızın buluşma noktası: Aydınlojis, sizinle her an, her yerde",
+  "Kullanmadığın eşyaların emin ellerde değer bulsun. Revive ile yeni sahiplerine ulaşsın.",
 
   "msg_hesab_n_yok_mu": "Hesabın Yok mu? Kayıt ol",
 

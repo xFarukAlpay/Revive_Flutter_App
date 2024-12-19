@@ -5,6 +5,7 @@ import '../presentation/ilan_screen/ilan_screen.dart';
 import '../presentation/login_ekran_screen/login_ekrann_screen.dart';
 import '../presentation/profil_screen/profil_screen.dart';
 import '../presentation/signup_ekran_screen/signup_ekran_screen.dart';
+import '../presentation/ilan_ver/ilan_ver_screen.dart';
 
 class AppRoutes{
   static const String giriEkranScreen = 'giri_ekran_screen';
@@ -19,6 +20,8 @@ class AppRoutes{
 
   static const String ilanScreen = '/ilan_screen';
 
+  static const String ilanVer = '/ilan_ver';
+
 
 
   static const String appNavigationScreen = '/app_navigation_screen';
@@ -31,6 +34,7 @@ class AppRoutes{
     signupEkranScreen: SignupEkranScreen.builder,
     profilScreen: ProfilScreen.builder,
     ilanScreen: IlanScreen.builder,
+    ilanVer: IlanVerScreen.builder,
     appNavigationScreen: AppNavigationScreen.builder,
     initialRoute: GiriEkranScreen.builder
   };

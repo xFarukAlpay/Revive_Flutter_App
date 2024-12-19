@@ -9,6 +9,16 @@ part 'login_ekran_state.dart';
 class LoginEkranBloc extends Bloc<LoginEkranEvent, LoginEkranState> {
   LoginEkranBloc(LoginEkranState initialState) : super(initialState) {
     on<LoginEkranInitialEvent>(_onInitialize);
+    on<LoginEkranButtonPressed>(_buildLoginButton);
+
+  }
+  void _buildLoginButton(
+      LoginEkranButtonPressed event,
+      Emitter<LoginEkranState> emit,
+      ) {
+    NavigatorService.popAndPushNamed(
+      AppRoutes.ilanScreen,
+    );
   }
 
   _onInitialize(

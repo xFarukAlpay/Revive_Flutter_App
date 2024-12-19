@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tirloj/presentation/ilan_ver/ilan_ver_screen.dart';
 import '../../core/app_export.dart';
+import '../../main.dart';
 import '../../widgets/app_bar/appbar_leading_image.dart';
 import '../../widgets/app_bar/appbar_title.dart';
 import '../../widgets/app_bar/appbar_trailing_image.dart';
@@ -12,6 +14,7 @@ import 'models/ilan_model.dart';
 import 'models/listings_item_model.dart';
 import 'widgets/filtertags_item_widget.dart';
 import 'widgets/listings_item_widget.dart';
+import 'package:tirloj/list.dart';
 
 class IlanScreen extends StatelessWidget {
   IlanScreen({Key? key}) : super(key: key);
@@ -20,7 +23,8 @@ class IlanScreen extends StatelessWidget {
 
   static Widget builder(BuildContext context) {
     return BlocProvider<IlanBloc>(
-      create: (context) => IlanBloc(IlanState(ilanModelObj: IlanModel()))
+      create: (context) =>
+      IlanBloc(IlanState(ilanModelObj: IlanModel()))
         ..add(IlanInitialEvent()),
       child: IlanScreen(),
     );
@@ -56,14 +60,18 @@ class IlanScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4.h),
-                  child: BlocSelector<IlanBloc, IlanState, TextEditingController?>(
+                  child: BlocSelector<IlanBloc,
+                      IlanState,
+                      TextEditingController?>(
                     selector: (state) => state.searchController,
                     builder: (context, searchController) {
                       return CustomSearchView(
                         controller: searchController,
                         hintText: "lbl_t_m_lanlar".tr,
-                        contentPadding: EdgeInsets.fromLTRB(34.h, 12.h, 16.h, 12.h),
-                        borderDecoration: SearchViewStyleHelper.fillOnErrorContainer,
+                        contentPadding: EdgeInsets.fromLTRB(34.h, 12.h, 16.h, 12
+                            .h),
+                        borderDecoration: SearchViewStyleHelper
+                            .fillOnErrorContainer,
                         fillColor: theme.colorScheme.onErrorContainer,
                       );
                     },
@@ -110,6 +118,9 @@ class IlanScreen extends StatelessWidget {
                     height: 24.h,
                     width: 24.h,
                     margin: EdgeInsets.only(top: 6.h, right: 7.h),
+                    onTap: () {
+                      list.onTapList(context); // Statik metod çağrılıyor
+                    },
                   ),
                   Align(
                     alignment: Alignment.topLeft,
@@ -162,7 +173,8 @@ class IlanScreen extends StatelessWidget {
                   (index) {
                 if (index >= 4) return Container();
 
-                FiltertagsItemModel model = ilanModelObj?.filtertagsItemList[index] ?? FiltertagsItemModel();
+                FiltertagsItemModel model = ilanModelObj
+                    ?.filtertagsItemList[index] ?? FiltertagsItemModel();
                 if (index == 0) {
                   model = model.copyWith(tagFour: "Filtrele");
                 } else if (index == 1) {
@@ -180,7 +192,8 @@ class IlanScreen extends StatelessWidget {
                       if (index == 0) {
                         _showFilterPopup(context); // Filtrele popup açılır
                       }
-                      context.read<IlanBloc>().add(UpdateChipViewEvent(index: index, isSelected: value));
+                      context.read<IlanBloc>().add(UpdateChipViewEvent(
+                          index: index, isSelected: value));
                     },
                   ),
                 );
@@ -208,7 +221,8 @@ class IlanScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSectionHeader(context, "Taşıma Türü"),
-                _buildFilterOption(context, ["Açık Kasa", "Kapalı Kasa", "Soğutuculu Kasa"]),
+                _buildFilterOption(
+                    context, ["Açık Kasa", "Kapalı Kasa", "Soğutuculu Kasa"]),
                 Divider(thickness: 1, color: Colors.grey[300]), // Çizgi eklendi
 
                 _buildSectionHeader(context, "Yük Türü"),
@@ -236,6 +250,7 @@ class IlanScreen extends StatelessWidget {
       },
     );
   }
+
   Widget _buildSectionHeader(BuildContext context, String title) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -260,10 +275,12 @@ class IlanScreen extends StatelessWidget {
           style: TextButton.styleFrom(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.h),
             backgroundColor: Colors.grey[200],
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.h)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.h)),
           ),
           onPressed: () {},
-          child: Text(option, style: TextStyle(fontSize: 16.h, color: Colors.black)),
+          child: Text(
+              option, style: TextStyle(fontSize: 16.h, color: Colors.black)),
         );
       }).toList(),
     );
@@ -276,10 +293,12 @@ class IlanScreen extends StatelessWidget {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: title,
-          contentPadding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
+          contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.h, vertical: 12.h),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.h)),
         ),
-        items: _getCityList().map((city) => DropdownMenuItem(value: city, child: Text(city))).toList(),
+        items: _getCityList().map((city) =>
+            DropdownMenuItem(value: city, child: Text(city))).toList(),
         onChanged: (value) {},
       ),
     );
@@ -287,16 +306,87 @@ class IlanScreen extends StatelessWidget {
 
   List<String> _getCityList() {
     return [
-      "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya",
-      "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik",
-      "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum",
-      "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir",
-      "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul",
-      "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale",
-      "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa",
-      "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye",
-      "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak",
-      "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"
+      "Adana",
+      "Adıyaman",
+      "Afyonkarahisar",
+      "Ağrı",
+      "Aksaray",
+      "Amasya",
+      "Ankara",
+      "Antalya",
+      "Ardahan",
+      "Artvin",
+      "Aydın",
+      "Balıkesir",
+      "Bartın",
+      "Batman",
+      "Bayburt",
+      "Bilecik",
+      "Bingöl",
+      "Bitlis",
+      "Bolu",
+      "Burdur",
+      "Bursa",
+      "Çanakkale",
+      "Çankırı",
+      "Çorum",
+      "Denizli",
+      "Diyarbakır",
+      "Düzce",
+      "Edirne",
+      "Elazığ",
+      "Erzincan",
+      "Erzurum",
+      "Eskişehir",
+      "Gaziantep",
+      "Giresun",
+      "Gümüşhane",
+      "Hakkari",
+      "Hatay",
+      "Iğdır",
+      "Isparta",
+      "İstanbul",
+      "İzmir",
+      "Kahramanmaraş",
+      "Karabük",
+      "Karaman",
+      "Kars",
+      "Kastamonu",
+      "Kayseri",
+      "Kırıkkale",
+      "Kırklareli",
+      "Kırşehir",
+      "Kilis",
+      "Kocaeli",
+      "Konya",
+      "Kütahya",
+      "Malatya",
+      "Manisa",
+      "Mardin",
+      "Mersin",
+      "Muğla",
+      "Muş",
+      "Nevşehir",
+      "Niğde",
+      "Ordu",
+      "Osmaniye",
+      "Rize",
+      "Sakarya",
+      "Samsun",
+      "Siirt",
+      "Sinop",
+      "Sivas",
+      "Şanlıurfa",
+      "Şırnak",
+      "Tekirdağ",
+      "Tokat",
+      "Trabzon",
+      "Tunceli",
+      "Uşak",
+      "Van",
+      "Yalova",
+      "Yozgat",
+      "Zonguldak"
     ];
   }
 
@@ -322,6 +412,7 @@ class IlanScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildListings(BuildContext context) {
     return Expanded(
       child: BlocSelector<IlanBloc, IlanState, IlanModel?>(
@@ -334,7 +425,8 @@ class IlanScreen extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 6.h),
             itemCount: ilanModelObj?.listingsItemList.length ?? 0,
             itemBuilder: (context, index) {
-              ListingsItemModel model = ilanModelObj?.listingsItemList[index] ?? ListingsItemModel();
+              ListingsItemModel model = ilanModelObj?.listingsItemList[index] ??
+                  ListingsItemModel();
               return ListingsItemWidget(model);
             },
           );
@@ -373,6 +465,10 @@ class IlanScreen extends StatelessWidget {
   }
 
   void onTapArrowleftone(BuildContext context) {
-    NavigatorService.goBack();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => IlanVerScreen()),
+    );
   }
+
 }

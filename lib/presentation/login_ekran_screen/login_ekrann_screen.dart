@@ -15,7 +15,7 @@ class LoginEkranScreen extends StatelessWidget {
       create: (context) => LoginEkranBloc(
         LoginEkranState(loginEkranModelObj: LoginEkranModel()),
       )..add(LoginEkranInitialEvent()),
-      child: LoginEkranScreen(),
+      child: const LoginEkranScreen(),
     );
   }
 
@@ -27,7 +27,7 @@ class LoginEkranScreen extends StatelessWidget {
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         body: Container(
-          width: double.maxFinite,
+          width: double.infinity,
           height: SizeUtils.height,
           decoration: BoxDecoration(
             color: theme.colorScheme.onErrorContainer,
@@ -40,70 +40,30 @@ class LoginEkranScreen extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          child: Container(
-            padding: EdgeInsets.only(
-              left: 56.h,
-              top: 28.h,
-              right: 56.h,
-            ),
-            child: Column(
-              children: [
-                _buildLoginButton(context),
-                SizedBox(height: 40.h),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "msg_email_veya_kullan_c".tr,
-                    style: theme.textTheme.titleMedium,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-                _buildEmailInput(context),
-                SizedBox(height: 20.h),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8.h),
-                    child: Text(
-                      "lbl_ifre".tr,
-                      style: theme.textTheme.titleMedium,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12.h),
-                _buildPasswordInput(context),
-                SizedBox(height: 32.h),
-                _buildSubmitButton(context),
-                SizedBox(height: 14.h),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "msg_ifrenimi_unuttun2".tr,
-                        style: CustomTextStyles.bodyMediumErrorContainer,
-                      ),
-                      TextSpan(
-                        text: "lbl".tr,
-                        style: CustomTextStyles.bodyMediumErrorContainer,
-                      ),
-                      TextSpan(
-                        text: "lbl_t_kla".tr,
-                        style: CustomTextStyles.bodyMediumPrimaryContainer,
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(height: 4.h),
-              ],
-            ),
+          padding: EdgeInsets.symmetric(horizontal: 56.h, vertical: 28.h),
+          child: Column(
+            children: [
+              _buildLoginButton(context),
+              SizedBox(height: 40.h),
+              _buildSectionTitle("msg_email_veya_kullan_c".tr),
+              SizedBox(height: 10.h),
+              _buildEmailInput(context),
+              SizedBox(height: 20.h),
+              _buildSectionTitle("lbl_ifre".tr, leftPadding: 8.h),
+              SizedBox(height: 12.h),
+              _buildPasswordInput(context),
+              SizedBox(height: 32.h),
+              _buildSubmitButton(context),
+              SizedBox(height: 14.h),
+              _buildForgotPasswordText(),
+              SizedBox(height: 4.h),
+            ],
           ),
         ),
       ),
     );
   }
 
-  /// Section Widget
   Widget _buildLoginButton(BuildContext context) {
     return CustomElevatedButton(
       height: 38.h,
@@ -114,7 +74,19 @@ class LoginEkranScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
+  Widget _buildSectionTitle(String text, {double leftPadding = 0}) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: EdgeInsets.only(left: leftPadding),
+        child: Text(
+          text,
+          style: theme.textTheme.titleMedium,
+        ),
+      ),
+    );
+  }
+
   Widget _buildEmailInput(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 6.h),
@@ -128,7 +100,7 @@ class LoginEkranScreen extends StatelessWidget {
             contentPadding: EdgeInsets.fromLTRB(12.h, 10.h, 12.h, 14.h),
             validator: (value) {
               if (value == null || (!isValidEmail(value, isRequired: true))) {
-                return "err_msg_please_enter_valid_email";
+                return "err_msg_please_enter_valid_email".tr;
               }
               return null;
             },
@@ -138,7 +110,6 @@ class LoginEkranScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildPasswordInput(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 6.h),
@@ -156,12 +127,36 @@ class LoginEkranScreen extends StatelessWidget {
       ),
     );
   }
-
-  /// Section Widget
   Widget _buildSubmitButton(BuildContext context) {
     return CustomElevatedButton(
       text: "lbl_giri_yap".tr,
       margin: EdgeInsets.only(right: 6.h),
+      onPressed: () {
+        context.read<LoginEkranBloc>().add(LoginEkranButtonPressed());
+      },
+    );
+  }
+
+
+  Widget _buildForgotPasswordText() {
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "msg_ifrenimi_unuttun2".tr,
+            style: CustomTextStyles.bodyMediumErrorContainer,
+          ),
+          TextSpan(
+            text: "lbl".tr,
+            style: CustomTextStyles.bodyMediumErrorContainer,
+          ),
+          TextSpan(
+            text: "lbl_t_kla".tr,
+            style: CustomTextStyles.bodyMediumPrimaryContainer,
+          ),
+        ],
+      ),
+      textAlign: TextAlign.left,
     );
   }
 }

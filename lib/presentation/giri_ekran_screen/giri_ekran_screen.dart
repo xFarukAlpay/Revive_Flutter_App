@@ -30,8 +30,16 @@ class GiriEkranScreen extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             body: Container(
-              height: 882.h,
-              width: double.maxFinite,
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    ImageConstant.imgGroup59,
+                  ),
+                  fit: BoxFit.cover, // Görüntüyü orantılı şekilde ekrana yay
+                ),
+              ),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -55,20 +63,11 @@ class GiriEkranScreen extends StatelessWidget {
         children: [
           _buildTruckSection(context),
           Container(
-            width: double.maxFinite,
+            width: double.infinity,
             margin: EdgeInsets.only(top: 250.h),
-            // 100px aşağı kaydırmak için margin ekledik
             padding: EdgeInsets.symmetric(
-              horizontal: 50.h,
+              horizontal: 40.h,
               vertical: 120.h,
-            ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  ImageConstant.imgGroup59,
-                ),
-                fit: BoxFit.fill,
-              ),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -82,13 +81,11 @@ class GiriEkranScreen extends StatelessWidget {
                       style: CustomTextStyles.titleLargeKalamBlack90001
                           .copyWith(
                         fontWeight: FontWeight.bold,
-                      )
-                  ),
+                      )),
                 ),
                 SizedBox(height: 2.h),
                 Expanded(
                   child: Container(
-                    // 100px aşağı kaydırmak için margin ekledik
                     child: PageView(
                       controller: _pageController,
                       children: [
@@ -120,7 +117,6 @@ class GiriEkranScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 24.h),
                 SizedBox(
                   height: 10.h,
@@ -176,13 +172,11 @@ class GiriEkranScreen extends StatelessWidget {
                       TextSpan(
                         text: "lbl_kay_t".tr,
                         style: CustomTextStyles.bodyMediumPrimaryContainer,
-    recognizer: TapGestureRecognizer()..onTap = () {
-      // Tıklama olayını burada tanımlayın
-      context.read<GiriEkranBloc>().add(GiriEkranSignupButtonPressed());
-
-    },
-
-    ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.read<GiriEkranBloc>().add(GiriEkranSignupButtonPressed());
+                          },
+                      ),
                       TextSpan(text: " "),
                       TextSpan(
                         text: "lbl_ol".tr,
@@ -205,19 +199,15 @@ class GiriEkranScreen extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Container(
         height: 396.h,
-        // Ekranın yüksekliğine göre ayarlandığı için bu değer dinamik hale getirilebilir
-        width: double.maxFinite,
+        width: double.infinity,
         child: Stack(
           alignment: Alignment.center,
           children: [
             CustomImageView(
               imagePath: ImageConstant.imgTruckWithWhit,
               height: (396.h * SizeUtils.height / FIGMA_DESIGN_HEIGHT),
-              // Ekran yüksekliğine göre oranlanmış yükseklik
-              width: (double.maxFinite * SizeUtils.width /
-                  FIGMA_DESIGN_WIDTH), // Ekran genişliğine göre oranlanmış genişlik
+              width: double.infinity,
             ),
-            // Eğer başka içerikler eklemek istiyorsanız, buraya ekleyebilirsiniz.
           ],
         ),
       ),

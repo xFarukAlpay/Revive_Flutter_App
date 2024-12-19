@@ -20,7 +20,7 @@ class CustomSearchView extends StatelessWidget {
     this.textStyle,
     this.textInputType = TextInputType.text,
     this.maxLines,
-    this.hintText,
+    this.hintText = "Arama yapiniz",
     this.hintStyle,
     this.prefix,
     this.prefixConstraints,
@@ -61,8 +61,8 @@ class CustomSearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return alignment != null
         ? Align(
-      alignment: alignment!,
-      child: searchViewWidget(context))
+        alignment: alignment!,
+        child: searchViewWidget(context))
         : searchViewWidget(context);
   }
 
@@ -70,39 +70,38 @@ class CustomSearchView extends StatelessWidget {
     width: width ?? double.maxFinite,
     decoration: boxDecoration,
     child: TextFormField(
-      scrollPadding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      controller: controller,
-      focusNode: focusNode,
-      onTapOutside: (event) {
-        if (focusNode != null) {
-          focusNode!.unfocus();
-        } else {
-          FocusManager.instance.primaryFocus?.unfocus();
-        }
-      },
-      autofocus: autofocus,
-      style: textStyle ?? CustomTextStyles.bodySmallGray500,
-      keyboardType: textInputType,
-      maxLines: maxLines ?? 1,
-      decoration: decoration,
-      validator: validator,
-      onChanged:(String value) {
-        onChanged?.call(value);
-    }
-    ),
+        scrollPadding:
+        EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        controller: controller,
+        focusNode: focusNode,
+        onTapOutside: (event) {
+          if (focusNode != null) {
+            focusNode!.unfocus();
+          } else {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        },
+        autofocus: autofocus,
+        style: textStyle ?? CustomTextStyles.bodySmallGray500,
+        keyboardType: textInputType,
+        maxLines: maxLines ?? 1,
+        decoration: decoration,
+        validator: validator,
+        onChanged: (String value) {
+          onChanged?.call(value);
+        }),
   );
 
   InputDecoration get decoration => InputDecoration(
-    hintText: hintText ?? "",
+    hintText: hintText,
     hintStyle: hintStyle ?? CustomTextStyles.bodySmallOnErrorContainer,
     prefixIcon: prefix ??
         Container(
           margin: EdgeInsets.fromLTRB(34.h, 12.h, 12.h, 12.h),
           child: CustomImageView(
             imagePath: ImageConstant.imgSearch,
-            height: 20.h,
-            width: 24.h,
+            height: 24.h,
+            width: 22.h,
           ),
         ),
     prefixIconConstraints: prefixConstraints ??

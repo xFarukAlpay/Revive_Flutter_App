@@ -12,9 +12,10 @@ class IlanBloc extends Bloc<IlanEvent, IlanState> {
   IlanBloc(IlanState initialState) : super(initialState) {
     on<IlanInitialEvent>(_onInitialize);
     on<UpdateChipViewEvent>(_updateChipView);
+
   }
 
-   _updateChipView(
+  _updateChipView(
       UpdateChipViewEvent event,
       Emitter<IlanState> emit,
       ) {
@@ -40,64 +41,64 @@ class IlanBloc extends Bloc<IlanEvent, IlanState> {
     return [
       ListingsItemModel(
         image: ImageConstant.imgDownload2,
-        barefootbeach: "Kapalı Kasa / Nakliye",
-        sandytoesand: "İstanbul - Ankara arasında yük taşıma",
-        wilmoth: "İstanbul Lojistik",
+        barefootbeach: "2. El Kitaplar",
+        sandytoesand: "İstanbul - Ankara arasında kitap ",
+        wilmoth: "Kitap Lojistik",
         tag: "Lv.5",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload2,
-        barefootbeach: "Açık Kasa / Canlı yük",
-        sandytoesand: "Bursa - İzmir Arası canlı hayvan taşıma",
-        wilmoth: "İzmir Lojistik",
+        barefootbeach: "2. El Mobilya",
+        sandytoesand: "Bursa - İzmir arası mobilya ",
+        wilmoth: "Mobilya Lojistik",
         tag: "Lv.7",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload1,
-        barefootbeach: "Soğutmalı Araç / Gıda Taşıma",
-        sandytoesand: "Adana - Antalya arasında soğuk gıda nakliyesi",
-        wilmoth: "Adana Lojistik",
+        barefootbeach: "2. El Elektronik",
+        sandytoesand: "Adana - Antalya arasında elektronik ürün ",
+        wilmoth: "Elektronik Lojistik",
         tag: "Lv.8",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload2,
-        barefootbeach: "Açık Kasa / Ağır Yük",
-        sandytoesand: "İzmir - Bodrum arası ağır yük taşımacılığı",
-        wilmoth: "Bodrum Lojistik",
+        barefootbeach: "2. El Beyaz Eşya",
+        sandytoesand: "İzmir - Bodrum arası beyaz eşya ",
+        wilmoth: "Beyaz Eşya Lojistik",
         tag: "Lv.6",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload1,
-        barefootbeach: "Kapalı Kasa / Teknoloji Ürünleri",
-        sandytoesand: "İstanbul - Bursa arası elektronik taşımacılığı",
-        wilmoth: "Bursa Lojistik",
+        barefootbeach: "2. El Araç Parçaları",
+        sandytoesand: "İstanbul - Bursa arası araç parçaları ",
+        wilmoth: "Araç Parça Lojistik",
         tag: "Lv.10",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload2,
-        barefootbeach: "Soğutmalı Araç / İlaç Taşıma",
-        sandytoesand: "Ankara - Eskişehir arası ilaç dağıtımı",
-        wilmoth: "Ankara Lojistik",
+        barefootbeach: "2. El Giyim",
+        sandytoesand: "Ankara - Eskişehir arası giyim ürünleri ",
+        wilmoth: "Giyim Lojistik",
         tag: "Lv.4",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload1,
-        barefootbeach: "Açık Kasa / İnşaat Malzemesi",
-        sandytoesand: "Kayseri - Konya arası inşaat malzemesi nakliyesi",
-        wilmoth: "Kayseri Lojistik",
+        barefootbeach: "2. El Oyuncak",
+        sandytoesand: "Kayseri - Konya arası oyuncak ",
+        wilmoth: "Oyuncak Lojistik",
         tag: "Lv.3",
       ),
       ListingsItemModel(
         image: ImageConstant.imgDownload2,
-        barefootbeach: "Kapalı Kasa / Otomotiv Parçaları",
-        sandytoesand: "Antalya - Mersin arası otomotiv yedek parça taşımacılığı",
-        wilmoth: "Mersin Lojistik",
+        barefootbeach: "2. El Antika",
+        sandytoesand: "Antalya - Mersin arası antika ",
+        wilmoth: "Antika Lojistik",
         tag: "Lv.2",
       ),
     ];
   }
 
-   _onInitialize(
+  _onInitialize(
       IlanInitialEvent event,
       Emitter<IlanState> emit,
       ) async {
